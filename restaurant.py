@@ -3,7 +3,7 @@ class Restaurant:
     def __init__(self, name, rating, cuisines, address):
         self.name = name
         self.rating = rating
-        self.cuisines = self.cuisines
+        self.cuisines = cuisines
         self.address = address
 
     def display(self):
