@@ -4,23 +4,23 @@ from restaurant_service import RestaurantService
 
 app = Flask(__name__)
 
-#Postcode format validation
+# Postcode format validation
 def valid_postcode(postcode):
-    pattern = "^[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}$"
+    pattern = r"^[A-Z]{1,2}[0-9][0-9A-Z]?\s?[0-9][A-Z]{2}$"
     return re.match(pattern, postcode)
 
-#Loading page and form submission
-@app.route("/", methods=["GET" , "POST"])
+# Loading page and form submission
+@app.route("/", methods=["GET", "POST"])
 def index():
     restaurants = []
-    postcode = ''
+    postcode = ""
     error = None
 
-    #Fetch restaurants if form submitted
+    # Fetch restaurants if form submitted
     if request.method == "POST":
         postcode = request.form.get("postcode", "").strip().upper()
 
-        #Dont call API if postcode empty
+        # Don't call API if postcode empty
         if not postcode:
             error = "Please enter a valid postcode"
         elif not valid_postcode(postcode):
@@ -31,8 +31,8 @@ def index():
 
             if not restaurants:
                 error = f"There are no restaurants found for '{postcode}'"
-            
-        return render_template("index.html", restaurants=restaurants, postcode=postcode, error=error)
-    
+
+    return render_template("index.html", restaurants=restaurants, postcode=postcode, error=error)
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=5001)
