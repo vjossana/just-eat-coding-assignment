@@ -1,0 +1,30 @@
+/* Base styles - resetting defaults so everything looks consistent across browsers */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+/* Header - using Just Eat orange */
+header {
+    background-color: #ff8000;
+    padding: 20px;
+    text-align: center;
+}
+
+header h1 {
+    color: white;
+    font-size: 2rem;
+}
+
+header p {
+    color: white;
+    font-size: 1rem;
+    margin-top: 5px;
+}
