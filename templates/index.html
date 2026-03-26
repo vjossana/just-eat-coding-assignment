@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Eat Restaurant Finder</title>
+    <!-- Linking to CSS-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <!-- Header  -->
+    <header>
+        <h1>Just Eat Restaurant Finder</h1>
+        <p>Enter a UK postcode to find restaurants near you</p>
+    </header>
+
+    <div class="container">
+
+        <!-- Search form -->
+        <form class="search-form" method="POST">
+            <input type="text" name="postcode" 
+                   placeholder="Enter a UK postcode (e.g. EC4M 7RF)" 
+                   value="{{ postcode }}">
+            <button type="submit">Search</button>
+        </form>
+
+        <!-- Show error if postcode is invalid or no results found -->
+        {% if error %}
+        <div class="error">{{ error }}</div>
+        {% endif %}
+
+        <!-- Only show results if restaurants were returned -->
+        {% if restaurants %}
+        <p class="results-heading">Top 10 restaurants for <strong>{{ postcode }}</strong>:</p>
+
+        <div class="cards-grid">
+            {% for restaurant in restaurants %}
+            <div class="card">
+                <h3>{{ restaurant.name }}</h3>
+                <!-- Cuisines is a list so joining into a readable string -->
+                <p><span>Cuisines:</span> {{ ', '.join(restaurant.cuisines) }}</p>
+                <p><span>Address:</span> {{ restaurant.address }}</p>
+                <p><span>Rating:</span> <span class="rating">{{ restaurant.rating }} ⭐</span></p>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
