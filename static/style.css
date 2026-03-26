@@ -1,4 +1,4 @@
-/* Base styles - resetting defaults so everything looks consistent across browsers */
+/* Base styles */
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +11,7 @@ body {
     color: #333;
 }
 
-/* Header - using Just Eat orange */
+/* Header */
 header {
     background-color: #ff8000;
     padding: 20px;
@@ -27,4 +27,64 @@ header p {
     color: white;
     font-size: 1rem;
     margin-top: 5px;
+}
+
+/* Error */
+.error {
+    background-color: #fff3cd;
+    border: 1px solid #ffc107;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    color: #856404;
+}
+
+/* Results heading */
+.results-heading {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+/* Restaurant cards grid */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Individual card */
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    color: #ff8000;
+    margin-bottom: 12px;
+    font-size: 1.1rem;
+}
+
+.card p {
+    font-size: 0.95rem;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.card p span {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Rating */
+.rating {
+    display: inline-block;
+    background-color: #ff8000;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: bold;
 }
