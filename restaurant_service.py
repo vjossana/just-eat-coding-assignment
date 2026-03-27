@@ -32,7 +32,9 @@ class RestaurantService:
             try:
                 name = item["name"]
                 rating = item["rating"]["starRating"]
-                cuisines = [c["name"] for c in item["cuisines"]]
+                #Filter out non-cuisines as API groups them
+                non_cuisines = {"Deals", "Collect stamps", "Freebies", "Low delivery fee"}
+                cuisines = [c["name"] for c in item["cuisines"] if c["name"] not in non_cuisines]
                 address = f"{item['address']['firstLine']}, {item['address']['city']}, {item['address']['postalCode']}"
 
                 restaurant = Restaurant(name, rating, cuisines, address)
