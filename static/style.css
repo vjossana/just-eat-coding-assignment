@@ -14,13 +14,15 @@ body {
 /* Header */
 header {
     background-color: #ff8000;
-    padding: 20px;
+    padding: 50px 20px;
     text-align: center;
 }
 
 header h1 {
     color: white;
-    font-size: 2rem;
+    font-size: 3rem;
+    font-weight: bold;
+    letter-spacing: 1px;
 }
 
 header p {
@@ -59,6 +61,7 @@ header p {
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-top: 3px solid #ff8000;
 }
 
 .card h3 {
