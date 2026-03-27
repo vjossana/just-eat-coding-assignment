@@ -7,6 +7,7 @@
     <!-- Linking to CSS-->
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
+
 <body>
 
     <!-- Header  -->
@@ -48,6 +49,15 @@
         {% endif %}
 
     </div>
+
+<!-- Loading message while waiting for API response -->
+<script>
+    document.querySelector('.search-form').addEventListener('submit', function() {
+        var button = document.querySelector(".search-form button");
+         button.textContent = 'Loading...';
+         button.disabled = true;
+    });
+</script>
 
 </body>
 </html>
