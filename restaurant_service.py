@@ -16,13 +16,13 @@ class RestaurantService:
         try:
             response = requests.get(url, headers=headers)
         except requests.exceptions.ConnectionError:
-            print("Network Error: Could not connect to Just Eat API")
-            return []
+            print("Could not connect to Just Eat API")
+            return None
         
         #Bad Response
         if response.status_code != 200:
-            print(f"Bad Response: No results found for postcode '{postcode}',")
-            return []
+            print(f"There are no restaurants found for '{postcode}',")
+            return None
         
         data = json.loads(response.text)
         restaurants = []
