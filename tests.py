@@ -1,3 +1,4 @@
+import requests
 import unittest
 from unittest.mock import patch, MagicMock
 import json
@@ -23,6 +24,85 @@ class TestRestaurant(unittest.TestCase):
 
         # Assert empty list is handled
         self.assertEqual(restaurant.cuisines, [])
+
+
+class TestRestaurantService(unittest.TestCase):
+
+    @patch("restaurant_service.requests.get")
+    def test_returns_first_10_restaurants(self, mock_get):
+        # Arrange - create fake API response with 20 restaurants
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = json.dumps({
+            "restaurants": [
+                {
+                    "name": f"Restaurant {i}",
+                    "rating": {"starRating": 4.0},
+                    "cuisines": [{"name": "Italian"}],
+                    "address": {"firstLine": "1 Test St", "city": "London", "postalCode": "EC4M 7RF"}
+                }
+                for i in range(20)
+            ]
+        })
+        mock_get.return_value = mock_response
+
+        # Act
+        service = RestaurantService()
+        results = service.get_restaurants("EC4M7RF")
+
+        # Assert - should only return 10 even though 12 were in the response
+        self.assertEqual(len(results), 10)
+
+    @patch("restaurant_service.requests.get")
+    def test_returns_none_on_network_error(self, mock_get):
+        # Arrange - simulate a connection error
+        mock_get.side_effect = requests.exceptions.ConnectionError("Network error")
+
+        # Act
+        service = RestaurantService()
+        result = service.get_restaurants("EC4M7RF")
+
+        # Assert - should return None on network error
+        self.assertIsNone(result)
+
+    @patch("restaurant_service.requests.get")
+    def test_returns_none_on_bad_response(self, mock_get):
+        # Arrange - simulate API returning error status
+        mock_response = MagicMock()
+        mock_response.status_code = 404
+        mock_get.return_value = mock_response
+
+        # Act
+        service = RestaurantService()
+        result = service.get_restaurants("INVALID")
+
+        # Assert - should return None on bad response
+        self.assertIsNone(result)
+
+    @patch("restaurant_service.requests.get")
+    def test_filters_out_non_cuisines(self, mock_get):
+        # Arrange - Restaurant with promotional tags mixed in cuisines to check filter
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.text = json.dumps({
+            "restaurants": [
+                {
+                    "name": "Krusty Krab",
+                    "rating": {"starRating": 4.5},
+                    "cuisines": [{"name": "Burgers"}, {"name": "Deals"}, {"name": "Collect stamps"}],
+                    "address": {"firstLine": "1 Test St", "city": "London", "postalCode": "EC4M 7RF"}
+                }
+            ]
+        })
+        mock_get.return_value = mock_response
+
+        # Act
+        service = RestaurantService()
+        results = service.get_restaurants("EC4M7RF")
+
+        # Assert - Deals and Collect stamps should be filtered out
+        self.assertEqual(results[0].cuisines, ["Burgers"])
+
 
 if __name__ == "__main__":
     unittest.main()
