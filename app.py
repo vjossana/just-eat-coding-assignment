@@ -22,7 +22,7 @@ def index():
 
         # Don't call API if postcode empty
         if not postcode:
-            error = "Please enter a valid postcode"
+            error = "Please enter a valid UK postcode (e.g. EC4M 7RF)"
         elif not valid_postcode(postcode):
             error = "Please enter a valid UK postcode (e.g. EC4M 7RF)"
         else:
@@ -35,4 +35,4 @@ def index():
     return render_template("index.html", restaurants=restaurants, postcode=postcode, error=error)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+    app.run(debug=True, port=5002)
