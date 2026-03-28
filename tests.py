@@ -26,6 +26,11 @@ class TestRestaurant(unittest.TestCase):
 
         # Assert empty list is handled
         self.assertEqual(restaurant.cuisines, [])
+        
+    def test_rating_is_stored_as_number(self):
+        # Rating should be a float not a string
+        restaurant = Restaurant("Krusty Krab", 4.5, ["Burgers"], "1 Test St, London, EC4M 7RF")
+        self.assertIsInstance(restaurant.rating, float)
 
 #Test RestaurantService
 
