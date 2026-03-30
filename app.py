@@ -29,14 +29,12 @@ def index():
             service = RestaurantService()
             restaurants = service.get_restaurants(postcode)
 
-            restaurants = service.get_restaurants(postcode)
-
-        if restaurants is None:
-             error = "Could not connect to Just Eat. Please check your internet connection and try again."
-        elif not restaurants:
-            error = f"There are no restaurants found for '{postcode}'."
+            if restaurants is None:
+                error = "Could not connect to Just Eat. Please check your internet connection and try again."
+            elif not restaurants:
+                error = f"There are no restaurants found for '{postcode}'."
 
     return render_template("index.html", restaurants=restaurants, postcode=postcode, error=error)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5003)
+    app.run(debug=True, port=5004)
