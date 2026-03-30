@@ -22,7 +22,7 @@ You should see:
 
  You should see something like:
  .......... 
-------------------------------------------------------------
+
 Ran 10 tests in 0.006s
  OK
 
@@ -35,20 +35,20 @@ Cuisines - The API groups promotional tags alongside cuisines. I assumed they we
 
 First 10 restaurants - Instructions given asked to limit results to 10. I assumed this meant the first 10 returned by the API, rather than filtering by any other criteria.
 
-Address display - The API returns the address fields seperatley. I combined these into one readable string so that it is more readable for the user.
+Address display - The API returns the address fields seperatley. I combined these into one string so that it is more readable for the user.
 
 Postcode formatting - I assumed postcodes should be converted to uppercase and spaces stripped before calling API to ensure that users aren't met with errors due to formatting rather than it being a bad response.
 
 User-Agent header - The API returned empty responses without a User-Agent header, so added 'Mozilla/5.0' was necessary to simulate a browser request.
 
 ## Improvements (if I had more time)
-Caching - The same postcode may be called many times. Instead of calling the API everytime, caching could make the results faster for user.
+Caching - The same postcode may be called many times. Instead of calling the API everytime, caching could make the results faster for the user.
 
-Sorting and Filtering - Would be good to allow users to filter by cuisine type or sort by rating to make more informed decisions.
+Sorting and Filtering - Allow users to filter by cuisine type or sort by rating to make more informed decisions.
 
-Postcode autocomplete - suggest postcodes as the user types? (many websites and food apps do this)
+Postcode autocomplete - Suggest postcodes as the user types? (many websites and food apps do this).
 
-Accessibility - could improve app for screen readers and keyboard navigations
+Accessibility - Could improve app for screen readers and keyboard navigations.
 
 ## Architecture
 
@@ -57,7 +57,7 @@ Accessibility - could improve app for screen readers and keyboard navigations
 ## Design Decisions
 
 ### Console app first, then web interface
-I initially built a console application to get the core logic working cleanly before adding a web interface, This allowed me to focus on the data layer first, ensuring the API calls, error handling and data processing were solid before building the frontend on top. Once the backend was working correctly I migrated to a Flask web interface to provide a more user friendly experience.
+I initially built a console application to get the core logic working cleanly before adding a web interface. This allowed me to focus on the data layer first, ensuring the API calls, error handling and data processing were solid before building the frontend on top. Once the backend was working correctly I migrated to a Flask web interface to provide a more user friendly experience.
 
 ### Separation of restaurant.py and restaurant_service.py
 I deliberately kept these as two separate classes following the principle of separation of concerns:
