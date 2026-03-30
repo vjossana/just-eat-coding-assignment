@@ -16,7 +16,7 @@
     <img src="{{ url_for('static', filename='logo.png') }}" 
          alt="Just Eat logo" 
          style="height: 50px; margin-bottom: 15px;">
-    <h1>Just Eat Restaurant Finder</h1>
+    <h1>Restaurant Finder</h1>
     <p>Enter a UK postcode to find restaurants near you</p>
 </header>
         
@@ -37,7 +37,7 @@
 
         <!-- Only show results if restaurants were returned -->
         {% if restaurants %}
-        <p class="results-heading">Top 10 restaurants for <strong>{{ postcode }}</strong>:</p>
+        <p class="results-heading">First 10 restaurants for <strong>{{ postcode }}</strong>:</p>
 
         <div class="cards-grid">
             {% for restaurant in restaurants %}
@@ -62,6 +62,10 @@
          button.disabled = true;
     });
 </script>
+
+<footer>
+    <p> Built using the Just Eat API </p>
+</footer>
 
 </body>
 </html>
