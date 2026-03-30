@@ -52,7 +52,7 @@ Accessibility - could improve app for screen readers and keyboard navigations
 
 ## Architecture
 
-![Architecture Diagram](images/architecture.png)
+![Architecture Diagram](static/architecture.png)
 
 ## Design Decisions
 
