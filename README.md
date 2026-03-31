@@ -5,31 +5,31 @@ Early Careers Software Engineering Program - Complete at home Coding Assignment
 The project is a web application that allows users to search for restaurants by UK postcode. The app fetches data from the provided Just Eat API and displays the first 10 restaurants for the given postcode, showing each restaurants name, cuisines, address and rating.
 
 ## How to install and run the app?
-1. Clone the repository: git clone https://github.com/vjossana/just-eat-coding-assignment.git 
-2. Navigate into the project folder: cd just-eat-coding-assignment 
-3. Create a virtual environment: python3 -m venv .venv 
-4. Activate the virtual environment: source .venv/bin/activate 
-5. Install dependencies: pip install -r requirements.txt 
-6. Run application: python app.py 
-7. Open browser and go to: http://127.0.0.1:5001
+1. Clone the repository: `git clone https://github.com/vjossana/just-eat-coding-assignment.git` 
+2. Navigate into the project folder: `cd just-eat-coding-assignment`
+3. Create a virtual environment: `python3 -m venv .venv`
+4. Activate the virtual environment: `source .venv/bin/activate` 
+5. Install dependencies: `pip install -r requirements.txt`
+6. Run application: `python app.py`
+7. Open browser and go to: `http://127.0.0.1:5001`
 
 ## How to run tests
 Once in the project folder with virtual enviroment activated then run: 
 
-/opt/anaconda3/bin/python -m unittest tests
+`python -m unittest tests`
 
 You should see:
-
- You should see something like:
+```
  .......... 
 
 Ran 10 tests in 0.006s
  OK
 
+```
 This confirms all tests are passing.
 
 ## Assumptions 
-Rating - the API returns both the 'starRating' and the 'userRating'. I used 'starRating' as upon inspection of the API, 'userRating' was rull for some restaurants. 
+Rating - the API returns both the 'starRating' and the 'userRating'. I used 'starRating' as upon inspection of the API, 'userRating' was null for some restaurants. 
 
 Cuisines - The API groups promotional tags alongside cuisines. I assumed they were not relevant to display and filtered them out.
 
@@ -49,6 +49,9 @@ Sorting and Filtering - Allow users to filter by cuisine type or sort by rating 
 Postcode autocomplete - Suggest postcodes as the user types? (many websites and food apps do this).
 
 Accessibility - Could improve app for screen readers and keyboard navigations.
+
+Cuisine Types - The Just Eat API groups non-cuisine tags such as 
+"Deals", "Collect stamps" and promotional tags alongside real cuisine types. Currently I have manually identified and filtered out known non-cuisine tags, however this approach is not scalable as new promotional tags could be added by Just Eat at any time. With more time I would explore whether the API provides a way to distinguish between real cuisines and promotional tags.
 
 ## Architecture
 
@@ -72,7 +75,7 @@ If I want to change how a restaurant is displayed, I only update `restaurant.py`
 I chose Flask as the web framework because I had prior experience with it and it is lightweight and well suited to small applications like this. It allowed me to build a clean web interface without unnecessary complexity.
 
 ## Resources and References used
-Throughout my building process I kept a loose 'diary' in order to portray clearly my though processes and use of resources.
+Throughout my building process I kept a loose 'diary' in order to portray clearly my thought processes and use of resources.
 
 ### API Exploration
 Explored the Just Eat API directly in the browser to identify field names and data structure before writing any code:
