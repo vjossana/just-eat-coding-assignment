@@ -33,7 +33,7 @@ class RestaurantService:
                 name = item["name"]
                 rating = item["rating"]["starRating"]
                 #Filter out non-cuisines as API groups them
-                non_cuisines = {"Deals", "Collect stamps", "Freebies", "Low delivery fee"}
+                non_cuisines = {"Deals", "Collect stamps", "Freebies", "Low delivery fee", "Cheeky Tuesday", "Groceries", "Alcohol", "Breakfast", "Lunch", "Dinner", "Sandwiches"}
                 cuisines = [c["name"] for c in item["cuisines"] if c["name"] not in non_cuisines]
                 address = f"{item['address']['firstLine']}, {item['address']['city']}, {item['address']['postalCode']}"
 
